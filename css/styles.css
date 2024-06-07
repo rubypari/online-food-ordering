@@ -1,0 +1,53 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    background-color: #563d7c!important; /* Change this color to any other fancy color you like */
+}
+
+.navbar-brand,
+.nav-link {
+    color: #fff !important;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.container h1 {
+    margin-top: 20px;
+    color: #343a40;
+}
+
+/* Carousel styles */
+.carousel-inner {
+    height: 300px; /* Adjust the height as needed */
+}
+
+.carousel-inner img {
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the container while maintaining aspect ratio */
+}
+
+/* Food item card styles */
+.food-item-card {
+    margin-bottom: 20px;
+}
+
+.food-item-card img {
+    width: 100%;
+    height: auto;
+}
+
+.food-item-card .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.food-item-card .btn {
+    margin-top: 10px;
+}
