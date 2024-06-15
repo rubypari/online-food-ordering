@@ -53,18 +53,17 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    function addToCart(itemId) {
-        let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const item = foodItems.find(item => item.id == itemId);
-        cart.push(item);
-        localStorage.setItem("cart", JSON.stringify(cart));
+    function addToCart(item) {
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        cartItems.push(item);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
         updateCartCount();
-        alert(item.name + " added to cart!");
+        alert('Item added to cart');
     }
-
+    
     function updateCartCount() {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
-        document.getElementById("cart-count").innerText = cart.length;
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        document.getElementById('cart-count').textContent = cartItems.length;
     }
 
     function filterFoodItems(query) {
@@ -76,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const filteredItems = filterFoodItems(query);
         displayFoodItems(filteredItems);
     });
+
 
     displayFoodItems(foodItems);
     updateCartCount();
