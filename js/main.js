@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <h5 class="card-title">${item.name}</h5>
                             <p class="card-text">${item.description}</p>
                             <p class="card-text"><strong>$${item.price}</strong></p>
-                            <button class="btn btn-primary add-to-cart" data-name="${item.name}" data-id="${item.id}" data-price="${item.price}">Add to Cart</button>
+                            <button class="btn btn-primary add-to-cart" data-image="${item.image}" data-name="${item.name}" data-id="${item.id}" data-price="${item.price}">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -50,6 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const item = {
                     id: this.getAttribute('data-id'),
                     name: this.getAttribute('data-name'),
+                    image:this.getAttribute('data-image'),
                     price: parseFloat(this.getAttribute('data-price'))
                 };
                 addToCart(item);

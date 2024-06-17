@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             itemElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
             itemElement.innerHTML = `
                 <div class="d-flex">
-                    <img src="images/food-placeholder.png" class="img-thumbnail mr-3" alt="${item.name}" style="width: 100px;">
+                    <img src="${item.image}" class="img-thumbnail mr-3" alt="${item.name}" style="width: 100px;">
                     <div>
                         <h5 class="mb-1">${item.name}</h5>
                         <p class="mb-1">$${item.price.toFixed(2)}</p>
