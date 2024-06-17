@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                 </div>
             `;
-            foodItemsContainer.innerHTML += foodItemCard;
+            foodItemsContainer.innerHTML = foodItemsContainer.innerHTML + foodItemCard;
         });
 
         document.querySelectorAll(".add-to-cart").forEach(button => {

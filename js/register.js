@@ -5,6 +5,9 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
+     // Hash the password
+     const hashedPassword = CryptoJS.SHA256(password).toString();
+
     // Retrieve user data from local storage
     const users = JSON.parse(localStorage.getItem('users')) || [];
 
@@ -14,12 +17,14 @@ document.getElementById('register-form').addEventListener('submit', function(eve
         return;
     }
 
-    // Add new user
-    users.push({ name, email, password });
+     // Add new user with hashed password
+    users.push({ name, email, password: hashedPassword });
     localStorage.setItem('users', JSON.stringify(users));
 
-    alert('Registration successful!');
+     alert('Registration successful!');
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('loggedInUser', JSON.stringify({ name, email, password: hashedPassword }));
+    // Redirect to home page
+    window.location.href = 'index.html';
 
-    // Redirect to login page
-    window.location.href = 'login.html';
 });
