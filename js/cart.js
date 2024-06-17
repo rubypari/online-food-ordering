@@ -1,43 +1,54 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartItemsContainer = document.getElementById('cart-items');
-
-    if (cartItems.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
-    } else {
-        cartItemsContainer.innerHTML = cartItems.map(item => `
-            <div class="col-md-12 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">${item.name}</h5>
-                        <p class="card-text">Price: $${item.price.toFixed(2)}</p>
-                        <button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button>
-                    </div>
-                </div>
-            </div>
-        `).join('');
+    const cartTotal = document.getElementById('cart-total');
+    const checkoutButton = document.getElementById('checkout-button');
+    
+    function loadCart() {
+        updateCartCount();
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
+            itemElement.innerHTML = `
+                ${item.name} - $${item.price.toFixed(2)}
+                <button class="btn btn-danger btn-sm" data-index="${index}">Remove</button>
+            `;
+            cartItemsContainer.appendChild(itemElement);
+            total += item.price;
+        });
+        
+        cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+        
+        const removeButtons = cartItemsContainer.querySelectorAll('button');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                removeFromCart(index);
+            });
+        });
     }
 
-    updateCartCount();
-
-    document.getElementById('checkout-button').addEventListener('click', function() {
-        if (cartItems.length === 0) {
-            alert('Your cart is empty.');
-        } else {
-            alert('Proceeding to checkout.');
-            // You can add additional checkout functionality here
+    function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        document.getElementById('cart-count').textContent = cart.length;
+    }
+    
+    function removeFromCart(index) {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+    }
+    
+    checkoutButton.addEventListener('click', function() {
+        if (confirm('Are you sure you want to proceed to checkout?')) {
+            // Perform checkout actions here, e.g., redirect to a payment page
+            alert('Checkout successful!');
+            localStorage.removeItem('cart');
+            loadCart();
         }
     });
+    loadCart();
 });
-
-function removeFromCart(itemId) {
-    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    cartItems = cartItems.filter(item => item.id !== itemId);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-    location.reload();
-}
-
-function updateCartCount() {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    document.getElementById('cart-count').textContent = cartItems.length;
-}
