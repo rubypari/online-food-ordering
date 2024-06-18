@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Products - Admin</title>
+    <title>List Users - Admin</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -51,12 +51,12 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row border-bottom mb-4 pb-4">
-                    <div class="col-3"><h2>Products</h2></div>
+                    <div class="col-3"><h2>Users</h2></div>
                     <div class="col-9 text-right">
-                        <button class="btn btn-success btn-sm mr-2">Add Product</button>
+                        <button class="btn btn-success btn-sm mr-2">Add User</button>
                     </div>
                 </div>
-                <div id="product-list" class="mt-4"></div>
+                <div id="user-list" class="mt-4"></div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -68,7 +68,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-
             function updateCartCount() {
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
                 document.getElementById('cart-count').textContent = cart.length;
@@ -76,26 +75,28 @@
 
             updateCartCount();
 
-            // Load products from local storage and display them
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            const productList = $("#product-list");
+            // Load users from local storage and display them
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userList = $("#user-list");
 
-            products.forEach(product => {
-                const productRow = $(`
+            users.forEach(user => {
+                const userRow = $(`
                     <div class="product-row row border-bottom mb-4 pb-4">
-                        <div class="product-image col-2"><img src="${product.image}" alt="${product.name}" class="img-fluid"></div>
-                        <div class="product-details col-3">
-                            <p><strong>Name:</strong> ${product.name}</p>
-                            <p><strong>Price:</strong> $${product.price}</p>
-                            <p><strong>Description:</strong> ${product.description}</p>
+                        <div class="product-image col-1"><img src="images/avator.png" alt="${user.name}" class="img-fluid"></div>
+                        <div class="product-details col-4">
+                            <p><strong>Name:</strong> ${user.name}</p>
+                            <p><strong>Email:</strong>${user.email}</p>
+                            <p><strong>Phone Number:</strong>+91 7067864312</p>
                         </div>
                         <div class="product-actions col-7 text-right">
-                            <button class="btn btn-warning btn-sm mr-2">Edit</button>
-                            <button class="btn btn-primary btn-sm">Send Offer</button>
+                            <button class="btn btn-warning btn-sm mr-2">Send Email</button>
+                            <button class="btn btn-warning btn-sm mr-2">Make Admin</button>
+                             <button class="btn btn-primary btn-sm">Edit</button>
+                            <button class="btn btn-primary btn-sm">Delete</button>
                         </div>
                     </div>
                 `);
-                productList.append(productRow);
+                userList.append(userRow);
             });
         });
     </script>

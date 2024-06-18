@@ -113,3 +113,26 @@ body {
     background-color: #c82333;
     border-color: #bd2130;
 }
+
+/*
+List user section
+**/
+
+.navbar-light {
+    background-color: #f8f9fa;
+}
+
+.user-row, .product-row {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.user-details, .product-details {
+    padding-left: 1rem;
+}
+
+.user-actions, .product-actions {
+    text-align: right;
+}
+
