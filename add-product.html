@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product - Admin</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+     <!--Top Meenubar-->
+     <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+            Foodie Soodie
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">Cart <span id="cart-count" class="badge badge-pill badge-primary">0</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--#Top menu bar-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <a href="list-products.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Products</a>
+                <a href="add-product.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add Product</a>
+                <a href="list-users.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Users</a>
+                <a href="add-user.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add User</a>
+                <a href="send-email.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Send Email</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h2>Add Product</h2>
+                <form id="add-product-form" class="mt-4">
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input type="text" class="form-control" id="productName" placeholder="Enter product name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price</label>
+                        <input type="number" class="form-control" id="productPrice" placeholder="Enter product price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea class="form-control" id="productDescription" rows="3" placeholder="Enter product description" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image URL</label>
+                        <input type="url" class="form-control" id="productImage" placeholder="Enter product image URL" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+                <div id="product-success" class="alert alert-success mt-4" style="display: none;">
+                    Product added successfully!
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <script src="js/auth.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#add-product-form').on('submit', function(event) {
+                event.preventDefault();
+
+                const productName = $('#productName').val();
+                const productPrice = parseFloat($('#productPrice').val());
+                const productDescription = $('#productDescription').val();
+                const productImage = $('#productImage').val();
+
+                const newProduct = {
+                    name: productName,
+                    price: productPrice,
+                    description: productDescription,
+                    image: productImage
+                };
+
+                let products = JSON.parse(localStorage.getItem('products')) || [];
+                products.push(newProduct);
+                localStorage.setItem('products', JSON.stringify(products));
+
+                $('#add-product-form')[0].reset();
+                $('#product-success').show().delay(3000).fadeOut();
+            });
+        });
+    </script>
+</body>
+</html>
