@@ -18,12 +18,12 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     }
 
      // Add new user with hashed password
-    users.push({ name, email, password: hashedPassword });
+    users.push({ name, email, password: hashedPassword,isAdmin:false });
     localStorage.setItem('users', JSON.stringify(users));
 
      alert('Registration successful!');
     localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('loggedInUser', JSON.stringify({ name, email, password: hashedPassword }));
+    localStorage.setItem('loggedInUser', JSON.stringify({ name, email, password: hashedPassword,isAdmin:false }));
     // Redirect to home page
     window.location.href = 'index.html';
 

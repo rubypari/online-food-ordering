@@ -1,4 +1,18 @@
 document.addEventListener("DOMContentLoaded", function() {
+    
+      // Set up default admin user
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+      if (!users.some(user => user.email === 'admin@gmail.com')) {
+          const defaultAdmin = {
+              name: 'admin',
+              password: CryptoJS.SHA256("admin").toString(), // Encrypting the password using base64 encoding
+              email: 'admin@gmail.com',
+              isAdmin: true
+          };
+          users.push(defaultAdmin);
+          localStorage.setItem('users', JSON.stringify(users));
+      }
+
     // Sample food items data
     const foodItems = [
         {
@@ -23,6 +37,11 @@ document.addEventListener("DOMContentLoaded", function() {
             description: "Assorted sushi rolls with fresh fish and vegetables."
         }
     ];
+
+    localStorage.setItem('products', JSON.stringify(foodItems));
+
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
 
     const foodItemsContainer = document.getElementById("food-items");
 
@@ -75,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     function filterFoodItems(query) {
-        return foodItems.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
+        return products.filter(item => item.name.toLowerCase().includes(query.toLowerCase()));
     }
 
     document.getElementById("search-button").addEventListener("click", function() {
@@ -84,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
         displayFoodItems(filteredItems);
     });
 
-    displayFoodItems(foodItems);
+    displayFoodItems(products);
     updateCartCount();
 
 

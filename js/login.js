@@ -13,6 +13,9 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 
     if (user) {
         alert('Login successful!');
+        if(user.isAdmin){
+            localStorage.setItem('isAdmin', 'true');
+        }
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('loggedInUser', JSON.stringify(user));
         // Redirect to home page

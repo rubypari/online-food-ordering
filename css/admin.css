@@ -1,0 +1,66 @@
+/* admin.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: lightgrey;
+}
+
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    width: 250px;
+    background-color: lightgrey;
+}
+
+#sidebar-wrapper .sidebar-heading {
+    padding: 1rem;
+    font-size: 1.5rem;
+    background-color: lightgrey;
+    border-bottom: 1px solid #6c757d;
+}
+
+#sidebar-wrapper .list-group-item {
+    padding: 1rem 1.5rem;
+    background-color: lightgrey;
+}
+
+#sidebar-wrapper .list-group-item:hover {
+    background-color: #d3d3d3;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    padding: 20px;
+}
+
+.container-fluid {
+    padding-top: 20px;
+}
+
+/* List Product Page */
+.product-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.product-image {
+    width: 20%;
+    text-align: left;
+}
+
+.product-details {
+    width: 30%;
+    text-align: left;
+}
+
+.product-actions {
+    width: 50%;
+    text-align: right;
+}

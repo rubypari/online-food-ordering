@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Products - Admin</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!--Top Meenubar-->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+            Foodie Soodie
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">Cart <span id="cart-count" class="badge badge-pill badge-primary">0</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!--#Top menu bar-->
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-right" id="sidebar-wrapper">
+            <div class="list-group list-group-flush">
+                <a href="list-products.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Products</a>
+                <a href="add-product.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add Product</a>
+                <a href="list-users.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Users</a>
+                <a href="add-user.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add User</a>
+                <a href="send-email.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Send Email</a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <h2>List Products</h2>
+                <div id="product-list" class="mt-4"></div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Load products from local storage and display them
+            const products = JSON.parse(localStorage.getItem('products')) || [];
+            const productList = $("#product-list");
+
+            products.forEach(product => {
+                const productRow = $(`
+                    <div class="product-row row border-bottom mb-4 pb-4">
+                        <div class="product-image col-2"><img src="${product.image}" alt="${product.name}" class="img-fluid"></div>
+                        <div class="product-details col-3">
+                            <p><strong>Name:</strong> ${product.name}</p>
+                            <p><strong>Price:</strong> $${product.price.toFixed(2)}</p>
+                            <p><strong>Description:</strong> ${product.description}</p>
+                        </div>
+                        <div class="product-actions col-7 text-right">
+                            <button class="btn btn-warning btn-sm mr-2">Edit</button>
+                            <button class="btn btn-primary btn-sm">Send Promotion</button>
+                        </div>
+                    </div>
+                `);
+                productList.append(productRow);
+            });
+        });
+    </script>
+</body>
+</html>
