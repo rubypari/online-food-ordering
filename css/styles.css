@@ -61,6 +61,19 @@ body {
     max-width: 1200px;
 }
 
+.payment-details img.card-logo {
+    width: 50px;
+    margin: 5px;
+}
+
+.payment-details {
+    margin-bottom: 20px;
+}
+
+.payment-details input {
+    margin-bottom: 10px;
+}
+
 #cart-items .list-group-item {
     border: 1px solid #ddd;
     border-radius: 5px;

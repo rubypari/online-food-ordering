@@ -1,1 +1,94 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Online Food Ordering</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">
+            Food Order
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart.html">Cart <span id="cart-count" class="badge badge-pill badge-primary">0</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.html">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h2>Payment Method</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <form id="payment-form">
+                    <div class="form-group">   
+                        <select class="form-control" id="payment-method" required>
+                            <option value="credit-card">Credit Card</option>
+                            <option value="debit-card">Debit Card</option>
+                            <option value="upi">UPI</option>
+                        </select>
+                    </div>
+                    <div id="card-details" class="payment-details">
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" class="form-control" id="card-number" placeholder="Enter card number" required>
+                            <img src="images/visa.png" alt="Visa" class="card-logo">
+                            <img src="images/mastercard.png" alt="MasterCard" class="card-logo">
+                            <img src="images/amex.png" alt="American Express" class="card-logo">
+                        </div>
+                        <div class="form-group">
+                            <label for="card-expiry">Expiry Date</label>
+                            <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="card-cvc">CVC</label>
+                            <input type="text" class="form-control" id="card-cvc" placeholder="CVC" required>
+                        </div>
+                    </div>
+                    <div id="upi-details" class="payment-details" style="display: none;">
+                        <div class="form-group">
+                            <label for="upi-id">UPI ID</label>
+                            <input type="text" class="form-control" id="upi-id" placeholder="Enter UPI ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="upi-qr">Scan UPI QR Code</label>
+                            <img src="images/upi-qr.png" width="50%" alt="UPI QR Code" class="img-fluid" id="upi-qr">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Summary</h5>
+                        <p id="order-summary" class="card-text">Total: $0.00</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/payment.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

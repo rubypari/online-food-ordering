@@ -51,9 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
     checkoutButton.addEventListener('click', function() {
         if (confirm('Are you sure you want to proceed to checkout?')) {
             // Perform checkout actions here, e.g., redirect to a payment page
-            alert('Checkout successful!');
+            window.location.href = 'payment.html';
+           /* alert('Checkout successful!');
             localStorage.removeItem('cart');
-            loadCart();
+            loadCart();*/
         }
     });
     loadCart();
