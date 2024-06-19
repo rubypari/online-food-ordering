@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List Products - Admin</title>
+    <title>List Users - Admin</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/styles.css">
@@ -51,12 +51,12 @@
         <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row border-bottom mb-4 pb-4">
-                    <div class="col-3"><h2>Products</h2></div>
+                    <div class="col-3"><h2>Send Offer</h2></div>
                     <div class="col-9 text-right">
-                        <button id="add-product-form" class="btn btn-success btn-sm mr-2">Add Product</button>
+                        <button id="add-user-form" class="btn btn-success btn-sm mr-2">Refresh</button>
                     </div>
                 </div>
-                <div id="product-list" class="mt-4"></div>
+                <div id="user-list" class="mt-4"></div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -69,10 +69,11 @@
     <script>
         $(document).ready(function() {
 
-            // Add product functionality
-            document.getElementById('add-product-form').addEventListener('click', function() {
-                window.location.href = 'add-product.html';
+              // Add user functionality
+              document.getElementById('add-user-form').addEventListener('click', function() {
+                window.location.href = 'add-user.html';
             });
+
 
             function updateCartCount() {
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -81,27 +82,8 @@
 
             updateCartCount();
 
-            // Load products from local storage and display them
-            const products = JSON.parse(localStorage.getItem('products')) || [];
-            const productList = $("#product-list");
+           
 
-            products.forEach(product => {
-                const productRow = $(`
-                    <div class="product-row row border-bottom mb-4 pb-4">
-                        <div class="product-image col-2"><img src="${product.image}" alt="${product.name}" class="img-fluid"></div>
-                        <div class="product-details col-3">
-                            <p><strong>Name:</strong> ${product.name}</p>
-                            <p><strong>Price:</strong> $${product.price}</p>
-                            <p><strong>Description:</strong> ${product.description}</p>
-                        </div>
-                        <div class="product-actions col-7 text-right">
-                            <button class="btn btn-warning btn-sm mr-2">Edit</button>
-                            <button class="btn btn-primary btn-sm">Send Offer</button>
-                        </div>
-                    </div>
-                `);
-                productList.append(productRow);
-            });
         });
     </script>
 </body>
