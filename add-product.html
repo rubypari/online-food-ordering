@@ -41,9 +41,7 @@
         <div class="bg-dark border-right" id="sidebar-wrapper">
             <div class="list-group list-group-flush">
                 <a href="list-products.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Products</a>
-                <a href="add-product.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add Product</a>
                 <a href="list-users.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">List Users</a>
-                <a href="add-user.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Add User</a>
                 <a href="send-email.html" class="list-group-item list-group-item-action bg-dark text-white border-bottom border-secondary">Send Email</a>
             </div>
         </div>
@@ -86,6 +84,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+
             $('#add-product-form').on('submit', function(event) {
                 event.preventDefault();
 
@@ -107,6 +106,8 @@
 
                 $('#add-product-form')[0].reset();
                 $('#product-success').show().delay(3000).fadeOut();
+
+                window.location.href = 'list-products.html';
             });
         });
     </script>

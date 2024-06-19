@@ -53,7 +53,7 @@
                 <div class="row border-bottom mb-4 pb-4">
                     <div class="col-3"><h2>Products</h2></div>
                     <div class="col-9 text-right">
-                        <button class="btn btn-success btn-sm mr-2">Add Product</button>
+                        <button id="add-product-form" class="btn btn-success btn-sm mr-2">Add Product</button>
                     </div>
                 </div>
                 <div id="product-list" class="mt-4"></div>
@@ -68,6 +68,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+
+            // Add product functionality
+            document.getElementById('add-product-form').addEventListener('click', function() {
+                window.location.href = 'add-product.html';
+            });
 
             function updateCartCount() {
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
